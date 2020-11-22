@@ -65,7 +65,7 @@ public class JDBCProductStorageTest {
         List<Product> products = jdbcStorage.allPublished();
 
         assertThat(products)
-                .hasSize(11)
+                .hasSize(1)
                 .extracting(Product::getId)
                 .contains(p1.getId())
                 .doesNotContain(p2.getId());
