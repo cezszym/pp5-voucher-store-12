@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Perform some static code analysis"
-        run: echo "it is ok"
+        run: echo "So far so good"
 
   build:
     runs-on: ubuntu-latest
