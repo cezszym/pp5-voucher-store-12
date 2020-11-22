@@ -39,7 +39,7 @@ public class JDBCProductStorageTest {
 
         jdbcStorage.save(product);
 
-        assertThat(jdbcStorage.getById(product.getId()))
+        assertThat(jdbcStorage.loadById(product.getId()))
                 .isNotEmpty()
                 .map(product1 -> product.getId())
                 .contains(product.getId());
@@ -48,7 +48,7 @@ public class JDBCProductStorageTest {
     @Test
     public void thereIsEmptyWheNoProduct() {
         ProductsStorage jdbcStorage = thereIsJDBCProductStorage();
-        assertThat(jdbcStorage.getById("not_exists"))
+        assertThat(jdbcStorage.loadById("not_exists"))
                 .isEmpty();
     }
 

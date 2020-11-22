@@ -23,7 +23,7 @@ public class HashMapProductsStorage implements ProductsStorage {
     }
 
     @Override
-    public Optional<Product> getById(String productId) {
+    public Optional<Product> loadById(String productId) {
         return Optional.ofNullable(products.get(productId));
     }
 
