@@ -32,7 +32,7 @@ public class JdbcProductStorage implements ProductsStorage {
     }
 
     @Override
-    public Optional<Product> getById(String productId) {
+    public Optional<Product> loadById(String productId) {
         try {
             return Optional.ofNullable(jdbcTemplate.queryForObject(SELECT_SINGLE_SQL, new Object[] {productId}, getProductRowMapper()));
         } catch (EmptyResultDataAccessException e) {

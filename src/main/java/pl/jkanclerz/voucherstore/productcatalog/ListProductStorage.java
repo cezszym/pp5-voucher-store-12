@@ -10,7 +10,7 @@ public class ListProductStorage implements ProductsStorage {
     }
 
     @Override
-    public Optional<Product> getById(String productId) {
+    public Optional<Product> loadById(String productId) {
         return Optional.empty();
     }
 

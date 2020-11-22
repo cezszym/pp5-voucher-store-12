@@ -1,21 +1,26 @@
 package pl.jkanclerz.voucherstore.productcatalog;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Entity
 public class Product {
-    private final UUID productID;
+    @Id
+    private String productID;
     private String description;
     private String picture;
     private BigDecimal price;
 
-    public Product(UUID productId) {
+    Product() {}
 
-        this.productID = productId;
+    public Product(UUID productId) {
+        this.productID = productId.toString();
     }
 
     public String getId() {
-        return productID.toString();
+        return productID;
     }
 
     public String getDescription() {

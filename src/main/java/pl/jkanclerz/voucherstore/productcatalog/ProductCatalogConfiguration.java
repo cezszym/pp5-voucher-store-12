@@ -16,11 +16,6 @@ public class ProductCatalogConfiguration {
     }
 
     @Bean
-    public ProductsStorage productionStorage() {
-        return new HashMapProductsStorage();
-    }
-
-    @Bean
     public ProductCatalogFacade fixturesAwareProductCatalogFacade(ProductsStorage productsStorage) {
         ProductCatalogFacade catalogFacade = new ProductCatalogFacade(productsStorage);
 

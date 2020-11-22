@@ -19,7 +19,7 @@ public class ProductCatalogFacade {
     }
 
     public boolean isExistsById(String productId) {
-        return productsStorage.getById(productId).isPresent();
+        return productsStorage.loadById(productId).isPresent();
     }
 
     public Product getById(String productId) {
@@ -44,7 +44,7 @@ public class ProductCatalogFacade {
     }
 
     private Product getProductOrException(String productId) {
-        return productsStorage.getById(productId)
+        return productsStorage.loadById(productId)
                 .orElseThrow(() -> new ProductNotFoundException(String.format("There is no product with id: %s", productId)));
     }
 }
