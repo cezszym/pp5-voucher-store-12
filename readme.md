@@ -7,3 +7,22 @@
 ```bash
 mvn test
 ```
+
+### crud testing
+
+```bash
+curl localhost:9999/api/clients -X POST -H "content-type: application/json" 
+'{
+    "firstname": "test",
+    "lastname": "sad",
+    "address": {
+     "street": "ulica",
+     "zip": "ziper",
+     "city": "karkow"
+    }
+ }'
+
+localhost:9999/api/clients | python -m json.tool
+
+
+```
