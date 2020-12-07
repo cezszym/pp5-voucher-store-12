@@ -32,10 +32,10 @@ public class SalesTest {
     }
 
     private String thereIsProductAvailable() {
-        return null;
+        return "product";
     }
 
     private SalesFacade thereIsSalesModule() {
-        return null;
+        return new SalesFacade();
     }
 }
