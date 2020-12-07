@@ -19,17 +19,17 @@ public class ProductCatalogConfiguration {
     public ProductCatalogFacade fixturesAwareProductCatalogFacade(ProductsStorage productsStorage) {
         ProductCatalogFacade catalogFacade = new ProductCatalogFacade(productsStorage);
 
-        String pId1 = catalogFacade.createProduct();
-        catalogFacade.applyPrice(pId1, BigDecimal.TEN);
-        catalogFacade.updateDetails(pId1, "My Fancy Product 1","My Fancy Product Url");
-
-        String pId2 = catalogFacade.createProduct();
-        catalogFacade.applyPrice(pId2, BigDecimal.TEN);
-        catalogFacade.updateDetails(pId2, "My Fancy Product 2","My Fancy Product Url");
-
-        String pId3 = catalogFacade.createProduct();
-        catalogFacade.applyPrice(pId3, BigDecimal.TEN);
-        catalogFacade.updateDetails(pId3, "My Fancy Product 3","My Fancy Product Url");
+//        String pId1 = catalogFacade.createProduct();
+//        catalogFacade.applyPrice(pId1, BigDecimal.TEN);
+//        catalogFacade.updateDetails(pId1, "My Fancy Product 1","My Fancy Product Url");
+//
+//        String pId2 = catalogFacade.createProduct();
+//        catalogFacade.applyPrice(pId2, BigDecimal.TEN);
+//        catalogFacade.updateDetails(pId2, "My Fancy Product 2","My Fancy Product Url");
+//
+//        String pId3 = catalogFacade.createProduct();
+//        catalogFacade.applyPrice(pId3, BigDecimal.TEN);
+//        catalogFacade.updateDetails(pId3, "My Fancy Product 3","My Fancy Product Url");
         return catalogFacade;
     }
 }
