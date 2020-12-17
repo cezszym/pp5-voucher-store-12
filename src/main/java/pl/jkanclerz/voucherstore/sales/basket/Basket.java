@@ -54,7 +54,7 @@ public class Basket {
         return productsCount.containsKey(product.getId());
     }
 
-    public int getProductCount() {
+    public int getProductQuantities() {
         return products.size();
     }
 
