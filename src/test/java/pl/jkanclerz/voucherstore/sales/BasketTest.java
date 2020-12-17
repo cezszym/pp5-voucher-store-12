@@ -44,7 +44,7 @@ public class BasketTest {
         basket.add(product2, thereIsAlwaysExistingProductInventory());
 
         //Assert
-        assertThat(basket.getProductCount()).isEqualTo(2);
+        assertThat(basket.getProductQuantities()).isEqualTo(2);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class BasketTest {
         basket.add(product1, thereIsAlwaysExistingProductInventory());
 
         //Assert
-        assertThat(basket.getProductCount()).isEqualTo(1);
+        assertThat(basket.getProductQuantities()).isEqualTo(1);
 
         basketContainsProductWithQuantity(basket, product1, 2);
     }
@@ -76,7 +76,7 @@ public class BasketTest {
         basket.add(product2, thereIsAlwaysExistingProductInventory());
 
         //Assert
-        assertThat(basket.getProductCount()).isEqualTo(2);
+        assertThat(basket.getProductQuantities()).isEqualTo(2);
 
         basketContainsProductWithQuantity(basket, product1, 2);
         basketContainsProductWithQuantity(basket, product2, 1);
