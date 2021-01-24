@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -27,4 +26,5 @@ public class Product {
         return productID;
     }
 
+    private String newValue;
 }

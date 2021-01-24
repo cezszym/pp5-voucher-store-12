@@ -9,20 +9,20 @@ import javax.validation.Valid;
 public class ClientController {
 
     @Autowired
-    ClientRepository clientRepository;
+    ClientsRepository clientsRepository;
 
     @PostMapping("/api/clients")
-    public void addClient(@Valid @RequestBody Client client){
-        clientRepository.save(client);
+    public void addClient(@Valid @RequestBody Client client) {
+        clientsRepository.save(client);
     }
 
     @GetMapping("/api/clients")
-    public Iterable<Client> clients(){
-        return clientRepository.findAll();
+    public Iterable<Client> clients() {
+        return clientsRepository.findAll();
     }
 
     @DeleteMapping("/api/clients/{id}")
     public void delete(@PathVariable Integer id) {
-        clientRepository.deleteById(id);
+        clientsRepository.deleteById(id);
     }
 }

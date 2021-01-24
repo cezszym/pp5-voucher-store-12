@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Basket {
-
     private final HashMap<String, Product> products;
-    private final HashMap<String, Integer> productsCount;
+    private final HashMap<String, Integer> productsQuantities;
 
     public Basket() {
         products = new HashMap<>();
-        productsCount = new HashMap<>();
+        productsQuantities = new HashMap<>();
     }
 
     public static Basket empty() {
@@ -27,11 +26,13 @@ public class Basket {
     }
 
     public void add(Product product, Inventory inventory) {
-        if(!isAvailable(product.getId(), inventory)){
+
+        if (!isAvailable(product.getProductID(), inventory)) {
             throw new NotEnoughQuantityException();
         }
-        if(!isInBasket(product)){
-            putToBasket(product);
+
+        if (!isInBasket(product)) {
+            putIntoBasket(product);
         } else {
             increaseProductQuantity(product);
         }
@@ -41,27 +42,28 @@ public class Basket {
         return inventory.isAvailable(productId);
     }
 
-    private void putToBasket(Product product) {
-        products.put(product.getId(), product);
-        productsCount.put(product.getId(), 1);
-    }
-
-    private void increaseProductQuantity(Product product) {
-        productsCount.put(product.getId(), productsCount.get(product.getId()) + 1);
-    }
-
-    private boolean isInBasket(Product product) {
-        return productsCount.containsKey(product.getId());
-    }
-
-    public int getProductQuantities() {
+    public int getProductsQuantities() {
         return products.size();
     }
 
     public List<BasketItem> getBasketItems() {
-        return productsCount.entrySet()
+        return productsQuantities
+                .entrySet()
                 .stream()
                 .map(es -> new BasketItem(es.getKey(), es.getValue()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private void putIntoBasket(Product product) {
+        products.put(product.getId(), product);
+        productsQuantities.put(product.getId(), 1);
+    }
+
+    private void increaseProductQuantity(Product product) {
+        productsQuantities.put(product.getId(), productsQuantities.get(product.getId()) + 1);
+    }
+
+    private boolean isInBasket(Product product) {
+        return productsQuantities.containsKey(product.getId());
     }
 }
