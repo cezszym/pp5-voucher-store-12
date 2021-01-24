@@ -3,9 +3,9 @@ package pl.jkanclerz.voucherstore.sales;
 import org.junit.Before;
 import org.junit.Test;
 import pl.jkanclerz.voucherstore.sales.basket.Basket;
+import pl.jkanclerz.voucherstore.sales.offer.OfferMaker;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 import static  org.assertj.core.api.Assertions.*;
 
@@ -73,7 +73,7 @@ public class CollectingProductsTest extends SalesTestCase {
         sales.addToBasket(productId1);
         sales.addToBasket(productId2);
 
-        Offer offer = sales.getCurrentOffer();
+        OfferMaker offer = sales.getCurrentOffer();
 
         assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(30));
     }
@@ -88,7 +88,7 @@ public class CollectingProductsTest extends SalesTestCase {
 
         sales.addToBasket(productId1);
 
-        Offer offer = sales.getCurrentOffer();
+        OfferMaker offer = sales.getCurrentOffer();
 
         assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(10));
     }

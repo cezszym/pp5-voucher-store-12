@@ -1,6 +1,7 @@
 package pl.jkanclerz.voucherstore.sales;
 
 import org.junit.Test;
+import pl.jkanclerz.voucherstore.sales.offer.OfferMaker;
 
 public class OrderingTest extends SalesTestCase {
 
@@ -14,7 +15,7 @@ public class OrderingTest extends SalesTestCase {
 
         sales.addToBasket(productId1);
         sales.addToBasket(productId2);
-        Offer seenOffer = sales.getCurrentOffer();
+        OfferMaker seenOffer = sales.getCurrentOffer();
         String reservationId = sales.acceptOffer(seenOffer);
 
         thereIsPendingOrderWithId(reservationId);

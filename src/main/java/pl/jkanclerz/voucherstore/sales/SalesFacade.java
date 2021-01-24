@@ -3,6 +3,8 @@ package pl.jkanclerz.voucherstore.sales;
 import pl.jkanclerz.voucherstore.productcatalog.Product;
 import pl.jkanclerz.voucherstore.productcatalog.ProductCatalogFacade;
 import pl.jkanclerz.voucherstore.sales.basket.Basket;
+import pl.jkanclerz.voucherstore.sales.basket.InMemoryBasketStorage;
+import pl.jkanclerz.voucherstore.sales.offer.OfferMaker;
 
 public class SalesFacade {
 
@@ -28,11 +30,11 @@ public class SalesFacade {
         basketStorage.addForCustomer(currentCustomerContext.getCustomerId(), basket);
     }
 
-    public Offer getCurrentOffer() {
-        return new Offer();
+    public OfferMaker getCurrentOffer() {
+        return new OfferMaker();
     }
 
-    public String acceptOffer(Offer seenOffer) {
+    public String acceptOffer(OfferMaker seenOffer) {
         return null;
     }
 }

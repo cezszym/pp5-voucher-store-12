@@ -2,6 +2,7 @@ package pl.jkanclerz.voucherstore.sales;
 
 import pl.jkanclerz.voucherstore.productcatalog.ProductCatalogConfiguration;
 import pl.jkanclerz.voucherstore.productcatalog.ProductCatalogFacade;
+import pl.jkanclerz.voucherstore.sales.basket.InMemoryBasketStorage;
 
 import java.math.BigDecimal;
 import java.util.UUID;
