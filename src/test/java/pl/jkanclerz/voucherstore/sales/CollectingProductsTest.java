@@ -2,8 +2,6 @@ package pl.jkanclerz.voucherstore.sales;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.jkanclerz.voucherstore.productcatalog.ProductCatalogConfiguration;
-import pl.jkanclerz.voucherstore.productcatalog.ProductCatalogFacade;
 import pl.jkanclerz.voucherstore.sales.basket.Basket;
 
 import java.math.BigDecimal;
@@ -11,20 +9,14 @@ import java.util.UUID;
 
 import static  org.assertj.core.api.Assertions.*;
 
-public class SalesTest {
-
-    private ProductCatalogFacade productCatalog;
-    private InMemoryBasketStorage basketStorage;
-    private Inventory alwaysExistsInventory;
-    private CurrentCustomerContext currentCustomerContext;
-    private String customerId;
+public class CollectingProductsTest extends SalesTestCase {
 
     @Before
     public void setUp() {
-        productCatalog = new ProductCatalogConfiguration().productCatalogFacade();
-        basketStorage = new InMemoryBasketStorage();
-        alwaysExistsInventory = (productId -> true);
-        currentCustomerContext = () -> customerId;
+        productCatalog = thereIsProductCatalog();
+        basketStorage = thereIsBasketStore();
+        alwaysExistsInventory = thereIsInventory();
+        currentCustomerContext = thereIsCurrentCustomerContext();
 
     }
 
@@ -68,24 +60,44 @@ public class SalesTest {
         thereIsXproductsInCustomersBasket(1, customer2);
     }
 
+    @Test
+    public void itGenerateOfferBasedOnCurrentBasket() {
+        SalesFacade sales = thereIsSalesModule();
+        String productId1 = thereIsProductAvailable();
+        String productId2 = thereIsProductAvailable();
+
+        customerId = thereIsCustomerWhoIsDoingSomeShoping();
+        var customer1 = new String(customerId);
+
+        sales.addToBasket(productId1);
+        sales.addToBasket(productId1);
+        sales.addToBasket(productId2);
+
+        Offer offer = sales.getCurrentOffer();
+
+        assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(30));
+    }
+
+    @Test
+    public void itGenerateOfferBasedOnCurrentBasketWithSingleProduct() {
+        SalesFacade sales = thereIsSalesModule();
+        String productId1 = thereIsProductAvailable();
+
+        customerId = thereIsCustomerWhoIsDoingSomeShoping();
+        var customer1 = new String(customerId);
+
+        sales.addToBasket(productId1);
+
+        Offer offer = sales.getCurrentOffer();
+
+        assertThat(offer.getTotal()).isEqualTo(BigDecimal.valueOf(10));
+    }
+
     private void thereIsXproductsInCustomersBasket(int productsCount, String customerId) {
         Basket basket = basketStorage.loadForCustomer(customerId)
                 .orElse(Basket.empty());
         assertThat(basket.getProductQuantities()).isEqualTo(productsCount);
     }
 
-    private String thereIsCustomerWhoIsDoingSomeShoping() {
-        return UUID.randomUUID().toString();
-    }
 
-    private String thereIsProductAvailable() {
-        var id = productCatalog.createProduct();
-        productCatalog.applyPrice(id, BigDecimal.valueOf(10));
-        productCatalog.updateDetails(id, "lego", "http://picture.img");
-        return id;
-    }
-
-    private SalesFacade thereIsSalesModule() {
-        return new SalesFacade(basketStorage, productCatalog, currentCustomerContext, alwaysExistsInventory);
-    }
 }
