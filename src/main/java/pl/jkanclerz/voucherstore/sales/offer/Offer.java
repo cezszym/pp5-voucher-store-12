@@ -7,10 +7,14 @@ public class Offer {
     private final List<OrderLine> orderItems;
     private final BigDecimal total;
 
+
+    private final int productCount;
+
     public Offer(List<OrderLine> orderItems, BigDecimal total) {
 
         this.orderItems = orderItems;
         this.total = total;
+        this.productCount = orderItems.size();
     }
 
     public BigDecimal getTotal() {
@@ -19,5 +23,8 @@ public class Offer {
 
     public List<OrderLine> getOrderItems() {
         return orderItems;
+    }
+    public int getProductCount() {
+        return productCount;
     }
 }
