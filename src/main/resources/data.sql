@@ -1,4 +1,4 @@
 insert into product (`productid`, `description`, `picture`, `price`) values
-('product-1', 'first product', 'https://loremflickr.com/320/240/dog', 20.50),
-('product-2', 'second product', 'https://loremflickr.com/320/240/cat', 14.50),
-('product-3', 'third product', 'https://loremflickr.com/320/240/fox', 10.50);
+('product-1', 'Lorem Ipsum Poem about love', 'https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=650&q=80', 20.53),
+('product-2', 'Lorem Ipsum Poem about friendship', 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80', 14.51),
+('product-3', 'Lorem Ipsum Poem about nature', 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80', 10.19);

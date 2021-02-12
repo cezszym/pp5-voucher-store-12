@@ -49,7 +49,7 @@ public class ProductCatalogHttpTest {
                 .isEqualTo(HttpStatus.OK);
 
         assertThat(response.getBody())
-                .hasSize(2)
+                .hasSize(5)
                 .extracting(Product::getDescription)
                 .contains(PRODUCT_1, PRODUCT_2)
                 .doesNotContain(DRAFT_PRODUCT);

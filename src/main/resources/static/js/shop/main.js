@@ -5,8 +5,8 @@ const getProducts = () => {
       .catch((error) => console.log(error))
 }
 
-const createHtmlElementFromString = (template) => {
-    let parent = document.createElement("div");
+const createHtmlElementFromString = (template, el) => {
+    let parent = document.createElement(el);
     parent.innerHTML = template.trim();
 
     return parent.firstChild
@@ -31,7 +31,7 @@ const createProductComponent = (product) => {
         </li>
     `
 
-    return createHtmlElementFromString(template)
+    return createHtmlElementFromString(template, 'div')
 }
 
 const handleAddToBasket = (productId) => {
@@ -41,10 +41,29 @@ const handleAddToBasket = (productId) => {
 
 }
 
+
+
 const refreshBasket = (offer) => {
     document.querySelector('.basket__count').innerText = offer.productCount
+    document.querySelector('.totalValue').innerText = '$' + offer.total
+    refreshItemsList(offer.orderItems)
+}
 
-//    document.querySelector('.basket__value').innerText = offer.total + ' PLN'
+const refreshItemsList = (items) => {
+    const cartList = document.querySelector('.itemsList');
+    console.log(cartList);
+    cartList.innerHTML=''
+    items.forEach(item => {
+        const template = `
+            <li>
+                <p class="itemName">${ item.description }</p>
+                <p class="itemQuantity">x ${item.quantity}</p>
+                <p class="price">$ ${item.unitPrice}</p>
+                <p></p>
+            </li>
+        `
+        cartList.appendChild(createHtmlElementFromString(template, 'div'))
+    })
 }
 
 const refreshCurrentOffer = () => {
@@ -63,7 +82,16 @@ const initializeAddToBasketHandler = (element) => {
     })
 }
 
+const initializeShowCartHandler = () => {
+    const btn = document.querySelector('.showCart')
+    const cartBox = document.querySelector('.cartSummary')
+    btn.addEventListener('click', (event) => {
+        cartBox.classList.toggle("hidden")
+    })
+}
+
 const productList = document.querySelector(".products")
+initializeShowCartHandler()
 getProducts().then(products => {
     products
         .map( product => createProductComponent(product) )
