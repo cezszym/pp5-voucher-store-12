@@ -18,8 +18,9 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class JdbcPlaygroundTest {
-
+    //Integration Test
     public static final String PRODUCT_ID = "f1f21a3d-d205-465f-8da7-29c0bf5a5d59";
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 

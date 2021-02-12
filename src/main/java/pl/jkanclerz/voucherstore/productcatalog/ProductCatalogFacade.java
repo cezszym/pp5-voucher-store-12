@@ -41,9 +41,7 @@ public class ProductCatalogFacade {
         loaded.setPrice(valueOf);
 
         productsStorage.save(loaded);
-
     }
-
 
     public List<Product> getAvailableProducts() {
         return productsStorage.allPublished();
